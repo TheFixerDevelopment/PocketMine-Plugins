@@ -98,7 +98,7 @@ class CombatLogger extends PluginBase {
 	 *
 	 * @return mixed
 	 */
-	public function getSettingsProperty(string $nested, array $default = []) {
+	public function getSettingsProperty(string $nested, bool $default = []) {
 		return $this->settings->getNested($nested, $default);
 	}
 
