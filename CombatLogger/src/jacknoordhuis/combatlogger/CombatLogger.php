@@ -44,7 +44,7 @@ class CombatLogger extends PluginBase {
 		$this->setMessageManager();
 		$this->setListener();
 		$this->startHeartbeat();
-		$this->getLogger()->info(TF::AQUA . "CombatLogger v0.0.2" . TF::GREEN . " by " . TF::YELLOW . "JackNoordhuis" . TF::GREEN . ", Loaded successfully!");
+		$this->getLogger()->info(TF::AQUA . "CombatLogger v0.0.3" . TF::GREEN . " by " . TF::YELLOW . "JackNoordhuis" . TF::GREEN . ", Loaded successfully!");
 	}
 
 	public function loadConfigs() {
@@ -54,7 +54,7 @@ class CombatLogger extends PluginBase {
 
 	public function onDisable() {
 		$this->taggedPlayers = [];
-		$this->getLogger()->info(TF::AQUA . "CombatLogger v0.0.2" . TF::GOLD . " by " . TF::YELLOW . "JackNoordhuis" . TF::GOLD . ", has been disabled!");
+		$this->getLogger()->info(TF::AQUA . "CombatLogger v0.0.3" . TF::GOLD . " by " . TF::YELLOW . "JackNoordhuis" . TF::GOLD . ", has been disabled!");
 	}
 
 	/**
@@ -98,7 +98,7 @@ class CombatLogger extends PluginBase {
 	 *
 	 * @return mixed
 	 */
-	public function getSettingsProperty(string $nested, $default = []) {
+	public function getSettingsProperty(string $nested, array $default = []) {
 		return $this->settings->getNested($nested, $default);
 	}
 
@@ -107,7 +107,7 @@ class CombatLogger extends PluginBase {
 	 * @param bool $value
 	 * @param int $time
 	 */
-	public function setTagged($player, $value = true, int $time = 10) {
+	public function setTagged(string $player, bool $value = true, int $time = 10) {
 		if($player instanceof Player) $player = $player->getName();
 		if($value) {
 			$this->taggedPlayers[$player] = $time;
@@ -121,7 +121,7 @@ class CombatLogger extends PluginBase {
 	 *
 	 * @return bool
 	 */
-	public function isTagged($player) {
+	public function isTagged(string $player) {
 		if($player instanceof Player) $player = $player->getName();
 		return isset($this->taggedPlayers[$player]);
 	}
@@ -131,7 +131,7 @@ class CombatLogger extends PluginBase {
 	 *
 	 * @return int
 	 */
-	public function getTagDuration($player) {
+	public function getTagDuration(string $player) {
 		if($player instanceof Player) $player = $player->getName();
 		return ($this->isTagged($player) ? $this->taggedPlayers[$player] : 0);
 	}
